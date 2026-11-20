@@ -2,7 +2,6 @@
 //! built in memory; nothing is written to disk.
 
 use std::io::{Cursor, Write};
-use std::path::Path;
 
 use mathcraft_import::evaluate::on_big_stack;
 use mathcraft_import::package::{Package, WORKSHEET};
@@ -47,7 +46,7 @@ fn zero_bytes_give_an_error() {
 #[cfg(unix)]
 #[test]
 fn zero_byte_file_on_disk_gives_an_error() {
-    assert_error(load_file(Path::new("/dev/null")), "0-byte file");
+    assert_error(load_file(std::path::Path::new("/dev/null")), "0-byte file");
 }
 
 #[test]
