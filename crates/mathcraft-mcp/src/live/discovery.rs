@@ -175,6 +175,7 @@ mod tests {
             token: new_token(),
             pid: 7,
         };
+        #[cfg_attr(not(unix), allow(unused_variables))]
         let path = write(&dir, &info).unwrap();
         assert_eq!(read(&dir), Some(info.clone()));
         #[cfg(unix)]
