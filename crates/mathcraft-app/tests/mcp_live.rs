@@ -620,8 +620,21 @@ fn slow_clients_cannot_hold_the_slots() {
                 let mut s = TcpStream::connect(("127.0.0.1", port)).unwrap();
                 let mut closed_after = None;
                 let start = std::time::Instant::now();
+                s.set_read_timeout(Some(Duration::from_millis(50))).unwrap();
                 while !stop.load(Ordering::SeqCst) {
-                    if s.write_all(b" ").is_err() {
+                    // A closed socket shows as a failed write on Unix, but only as a read of 0
+                    // bytes or a reset on Windows.
+                    let mut buf = [0u8; 16];
+                    let gone = s.write_all(b" ").is_err()
+                        || match std::io::Read::read(&mut s, &mut buf) {
+                            Ok(0) => true,
+                            Ok(_) => false,
+                            Err(e) => !matches!(
+                                e.kind(),
+                                std::io::ErrorKind::WouldBlock | std::io::ErrorKind::TimedOut
+                            ),
+                        };
+                    if gone {
                         closed_after = Some(start.elapsed());
                         break;
                     }
