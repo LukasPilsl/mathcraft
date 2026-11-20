@@ -15,12 +15,12 @@ workspace = true
 
 [dependencies]
 eframe = { version = "0.33", default-features = false, features = ["default_fonts", "glow", "x11", "wayland"] }
-mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
-mathcraft-doc = { version = "0.1.0", path = "../mathcraft-doc" }
-mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+mathcraft-core = { version = "1.0.0", path = "../mathcraft-core" }
+mathcraft-doc = { version = "1.0.0", path = "../mathcraft-doc" }
+mathcraft-import = { version = "1.0.0", path = "../mathcraft-import" }
 # The live MCP endpoint (src/live.rs) runs the MCP tool table inside the window. The MCP crate
 # does not depend on this crate: the renderer is handed over through `mcp_render::install`.
-mathcraft-mcp = { version = "0.1.0", path = "../mathcraft-mcp" }
+mathcraft-mcp = { version = "1.0.0", path = "../mathcraft-mcp" }
 serde_json = "1"
 ttf-parser = "0.25"
 # Decodes the PNG and JPEG image regions for the canvas and the PDF export. MIT or Apache-2.0.

@@ -14,7 +14,7 @@ description = "Reader and writer for Mathcad Prime .mcdx worksheet packages, and
 workspace = true
 
 [dependencies]
-mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
+mathcraft-core = { version = "1.0.0", path = "../mathcraft-core" }
 roxmltree = { version = "0.21.2", features = ["positions"] }
 thiserror = "2.0.21"
 zip = "9.6.0"

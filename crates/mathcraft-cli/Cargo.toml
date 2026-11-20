@@ -14,13 +14,13 @@ description = "Command-line tools for Mathcraft: inspect .mcdx worksheets and ru
 workspace = true
 
 [dependencies]
-mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
-mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+mathcraft-core = { version = "1.0.0", path = "../mathcraft-core" }
+mathcraft-import = { version = "1.0.0", path = "../mathcraft-import" }
 
 # Optional: `mathcraft-cli render` draws pages and regions to PNG through the app's offscreen
 # renderer (egui, wgpu). Off by default so the CLI stays free of the GUI stack:
 # `cargo run -p mathcraft-cli --features render -- render <file.mcdx> <out.png>`.
-mathcraft-app = { version = "0.1.0", path = "../mathcraft-app", features = ["render"], optional = true }
+mathcraft-app = { version = "1.0.0", path = "../mathcraft-app", features = ["render"], optional = true }
 
 [features]
 render = ["dep:mathcraft-app"]

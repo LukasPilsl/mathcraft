@@ -14,5 +14,5 @@ description = "GUI-free worksheet document API: regions with stable ids, undoabl
 workspace = true
 
 [dependencies]
-mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
-mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+mathcraft-core = { version = "1.0.0", path = "../mathcraft-core" }
+mathcraft-import = { version = "1.0.0", path = "../mathcraft-import" }

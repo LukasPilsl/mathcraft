@@ -14,9 +14,9 @@ description = "MCP server: lets an AI client read, edit, calculate, render and s
 workspace = true
 
 [dependencies]
-mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
-mathcraft-doc = { version = "0.1.0", path = "../mathcraft-doc" }
-mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+mathcraft-core = { version = "1.0.0", path = "../mathcraft-core" }
+mathcraft-doc = { version = "1.0.0", path = "../mathcraft-doc" }
+mathcraft-import = { version = "1.0.0", path = "../mathcraft-import" }
 serde_json = "1"
 # Reads the header and decodes PNG and JPEG images for insert_image (MIT or Apache-2.0). Only the
 # two decoders are enabled, the same as the app.

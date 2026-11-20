@@ -1751,7 +1751,7 @@ dependencies = [
 
 [[package]]
 name = "mathcraft-app"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "eframe",
  "egui-wgpu",
@@ -1770,7 +1770,7 @@ dependencies = [
 
 [[package]]
 name = "mathcraft-cli"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "mathcraft-app",
  "mathcraft-core",
@@ -1779,7 +1779,7 @@ dependencies = [
 
 [[package]]
 name = "mathcraft-core"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "libc",
  "num-bigint 0.5.1",
@@ -1791,7 +1791,7 @@ dependencies = [
 
 [[package]]
 name = "mathcraft-doc"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "mathcraft-core",
  "mathcraft-import",
@@ -1799,7 +1799,7 @@ dependencies = [
 
 [[package]]
 name = "mathcraft-import"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "mathcraft-core",
  "roxmltree",
@@ -1809,7 +1809,7 @@ dependencies = [
 
 [[package]]
 name = "mathcraft-mcp"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "getrandom 0.3.4",
  "image",
