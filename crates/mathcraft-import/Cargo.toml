@@ -1,0 +1,20 @@
+[package]
+name = "mathcraft-import"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+keywords.workspace = true
+description = "Reader and writer for Mathcad Prime .mcdx worksheet packages, and worksheet evaluation"
+
+[lints]
+workspace = true
+
+[dependencies]
+mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
+roxmltree = { version = "0.21.2", features = ["positions"] }
+thiserror = "2.0.21"
+zip = "9.6.0"

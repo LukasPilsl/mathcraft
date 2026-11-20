@@ -1,0 +1,25 @@
+[package]
+name = "mathcraft-mcp"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+readme = "README.md"
+repository.workspace = true
+rust-version.workspace = true
+keywords.workspace = true
+description = "MCP server: lets an AI client read, edit, calculate, render and save Mathcraft worksheets, headless or in the running app"
+
+[lints]
+workspace = true
+
+[dependencies]
+mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
+mathcraft-doc = { version = "0.1.0", path = "../mathcraft-doc" }
+mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+serde_json = "1"
+# Reads the header and decodes PNG and JPEG images for insert_image (MIT or Apache-2.0). Only the
+# two decoders are enabled, the same as the app.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+# The OS random source for the live token (MIT or Apache-2.0).
+getrandom = "0.3"

@@ -1,0 +1,85 @@
+[package]
+name = "mathcraft-app"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+keywords.workspace = true
+description = "Mathcraft desktop worksheet app (egui): view, edit and save .mcdx worksheets"
+
+[lints]
+workspace = true
+
+[dependencies]
+eframe = { version = "0.33", default-features = false, features = ["default_fonts", "glow", "x11", "wayland"] }
+mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
+mathcraft-doc = { version = "0.1.0", path = "../mathcraft-doc" }
+mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+# The live MCP endpoint (src/live.rs) runs the MCP tool table inside the window. The MCP crate
+# does not depend on this crate: the renderer is handed over through `mcp_render::install`.
+mathcraft-mcp = { version = "0.1.0", path = "../mathcraft-mcp" }
+serde_json = "1"
+ttf-parser = "0.25"
+# Decodes the PNG and JPEG image regions for the canvas and the PDF export. MIT or Apache-2.0.
+# Only these two decoders are enabled.
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+rfd = "0.16"
+
+# Headless PNG rendering (`render` module, `examples/screenshot.rs`): egui-wgpu draws each frame
+# into an offscreen texture. Optional: the shipped window app does not build it.
+egui-wgpu = { version = "0.33", optional = true }
+pollster = { version = "0.4", optional = true }
+
+[features]
+render = ["dep:egui-wgpu", "dep:pollster"]
+
+# The headless MCP server on stdio. It lives here, not in `mathcraft-mcp`, because it installs the
+# GPU renderer of this crate (`mcp_render`) and the MCP crate must not depend on the app.
+[[bin]]
+name = "mathcraft-mcp"
+path = "src/bin/mathcraft-mcp.rs"
+
+[[bin]]
+name = "mathcraft-app"
+path = "src/main.rs"
+
+[dev-dependencies]
+# The crate itself with `render` on, so tests and examples always build the render module.
+mathcraft-app = { path = ".", features = ["render"] }
+zip = "9.6.0"
+# `cargo run -p mathcraft-app --example screenshot -- <file.mcdx> <out.png>`. Its module doc
+# explains the options. `test = true` also runs its smoke test under `cargo test`.
+[[example]]
+name = "screenshot"
+test = true
+required-features = ["render"]
+
+# Debian package: `cargo deb -p mathcraft-app --no-build --output target/packaging/`
+# (cargo-deb, MIT or Apache-2.0; see packaging/README.md). Asset paths are relative to this
+# folder; `target/release/` is the workspace target folder. Licence texts ship with the package.
+[package.metadata.deb]
+name = "mathcraft"
+maintainer = "Mathcraft contributors"
+copyright = "Mathcraft contributors. Licensed under MIT OR Apache-2.0."
+license-file = ["../../LICENSE-MIT", "0"]
+extended-description = "Mathcraft is an open-source desktop app that opens, recalculates and edits Mathcad Prime worksheets (.mcdx). It is not made by or affiliated with PTC."
+section = "science"
+priority = "optional"
+depends = "$auto"
+maintainer-scripts = "../../packaging/linux/deb"
+assets = [
+    ["target/release/mathcraft-app", "usr/bin/", "755"],
+    ["target/release/mathcraft-mcp", "usr/bin/", "755"],
+    ["../../packaging/linux/mathcraft.desktop", "usr/share/applications/mathcraft.desktop", "644"],
+    ["../../packaging/linux/mathcraft-mime.xml", "usr/share/mime/packages/mathcraft.xml", "644"],
+    ["assets/icons/icon-256.png", "usr/share/icons/hicolor/256x256/apps/mathcraft.png", "644"],
+    ["assets/icons/icon-512.png", "usr/share/icons/hicolor/512x512/apps/mathcraft.png", "644"],
+    ["../../LICENSE-MIT", "usr/share/doc/mathcraft/", "644"],
+    ["../../LICENSE-APACHE", "usr/share/doc/mathcraft/", "644"],
+    ["../../NOTICE", "usr/share/doc/mathcraft/", "644"],
+    ["../../documentation/THIRD_PARTY_LICENSES.md", "usr/share/doc/mathcraft/", "644"],
+    ["assets/fonts/LICENSES/*.txt", "usr/share/doc/mathcraft/fonts/", "644"],
+]

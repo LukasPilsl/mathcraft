@@ -1,0 +1,8 @@
+#!/bin/sh
+# Refresh the MIME, desktop and icon caches after install. Failures are not fatal.
+set -e
+if [ "$1" = "configure" ]; then
+    update-mime-database /usr/share/mime >/dev/null 2>&1 || true
+    update-desktop-database -q /usr/share/applications >/dev/null 2>&1 || true
+    gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor >/dev/null 2>&1 || true
+fi

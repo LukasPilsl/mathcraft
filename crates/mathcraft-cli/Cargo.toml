@@ -1,0 +1,26 @@
+[package]
+name = "mathcraft-cli"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+keywords.workspace = true
+description = "Command-line tools for Mathcraft: inspect .mcdx worksheets and run the golden harness"
+
+[lints]
+workspace = true
+
+[dependencies]
+mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
+mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
+
+# Optional: `mathcraft-cli render` draws pages and regions to PNG through the app's offscreen
+# renderer (egui, wgpu). Off by default so the CLI stays free of the GUI stack:
+# `cargo run -p mathcraft-cli --features render -- render <file.mcdx> <out.png>`.
+mathcraft-app = { version = "0.1.0", path = "../mathcraft-app", features = ["render"], optional = true }
+
+[features]
+render = ["dep:mathcraft-app"]

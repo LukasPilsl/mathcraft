@@ -1,0 +1,100 @@
+name: Release
+
+# Builds the installers on a tag (v*) and attaches them to a DRAFT GitHub release, so a person
+# checks the files before anything is published. Never run in the private repository: it needs
+# the public repository, and the tag. Packaging scripts: packaging/README.md.
+#
+# Not signed: no Apple Developer ID (notarisation) and no Windows code-signing certificate. Both
+# are paid services and need the shareholder's approval.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  package:
+    name: package (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, name: linux }
+          - { os: macos-latest, name: macos }
+          - { os: windows-latest, name: windows }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Linux GUI packages (eframe/winit)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbcommon-dev libwayland-dev libx11-dev libxcursor-dev libxrandr-dev libxi-dev libgl1-mesa-dev
+
+      - name: Release binaries
+        run: |
+          # Both binaries (the window and mathcraft-mcp) carry the offscreen renderer for the render
+          # tools, in the window too (documentation/MCP_USER_GUIDE.md).
+          cargo build --release --locked -p mathcraft-app --features render
+
+      - name: Linux packages (.deb, .AppImage)
+        if: runner.os == 'Linux'
+        run: |
+          cargo install cargo-deb --locked
+          mkdir -p target/packaging
+          cargo deb -p mathcraft-app --no-build --output target/packaging/
+          curl -fsSL -o "$RUNNER_TEMP/appimagetool" \
+            https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x "$RUNNER_TEMP/appimagetool"
+          SKIP_BUILD=1 APPIMAGETOOL="$RUNNER_TEMP/appimagetool" packaging/linux/build-appimage.sh
+
+      - name: macOS bundle and DMG
+        if: runner.os == 'macOS'
+        run: SKIP_BUILD=1 packaging/macos/build-app.sh
+
+      - name: Windows installer
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install innosetup --no-progress -y
+          packaging\windows\build-installer.ps1
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages-${{ matrix.name }}
+          if-no-files-found: error
+          path: |
+            target/packaging/*.deb
+            target/packaging/*.AppImage
+            target/packaging/*.dmg
+            target/packaging/*-setup.exe
+
+  release:
+    name: draft GitHub release
+    needs: package
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Create draft release with the packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --repo "$GITHUB_REPOSITORY" --draft --verify-tag \
+            --title "Mathcraft $GITHUB_REF_NAME" --generate-notes

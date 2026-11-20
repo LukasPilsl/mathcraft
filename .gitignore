@@ -1,0 +1,17 @@
+# Build output
+/target
+**/*.rs.bk
+
+# Python bytecode (tools/ scripts)
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+.claude/settings.local.json
+
+# PTC reference data: copyrighted, large, never published (see documentation/REBUILD_GUIDE.md §5).
+# Stays on disk for agents to read; not tracked.
+/documentation/mathcad-prime-12-help/
+/screenshots/
+.claude/worktrees/

@@ -1,0 +1,23 @@
+Mathcraft
+Copyright (c) Mathcraft contributors
+
+This product is licensed under the MIT licence or the Apache Licence, Version 2.0, at your option
+(see LICENSE-MIT and LICENSE-APACHE).
+
+This product includes third-party software and fonts under their own licences. The full list of
+crates in the shipped dependency graph, their licences, and the licence texts that a binary
+release must carry is in documentation/THIRD_PARTY_LICENSES.md. In summary:
+
+- STIX Two Text and STIX Two Math fonts (crates/mathcraft-app/assets/fonts), Copyright 2001-2021
+  The STIX Fonts Project Authors, licensed under the SIL Open Font License 1.1. The text of the
+  licence is in crates/mathcraft-app/assets/fonts/LICENSES/STIX-Two-OFL-1.1.txt. The files are
+  subsets of the original fonts, as described in the third-party document.
+- Default fonts of egui (compiled in by epaint_default_fonts): Ubuntu-Light (Ubuntu Font Licence
+  1.0), NotoEmoji (SIL Open Font License 1.1), Hack (MIT, with DejaVu notices) and emoji-icon-font
+  (MIT). Their licence texts are shipped with the crate and must accompany a binary release.
+- Rust crates under the Apache License 2.0, the MIT licence, the BSD licences, ISC, Zlib, and
+  Unicode-3.0 licences, as listed in documentation/THIRD_PARTY_LICENSES.md. Where a licence needs
+  its notice kept with a binary, the release must include it.
+
+Mathcraft is not affiliated with PTC. Mathcad is a trademark of PTC (Parametric Technology
+Corporation).

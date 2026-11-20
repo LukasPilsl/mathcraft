@@ -1,0 +1,401 @@
+Ai	Ai(x): solution of y'' = x*y that decays for x > 0
+Bi	Bi(x): solution of y'' = x*y that grows for x > 0, companion of Ai
+butter	Analog Butterworth lowpass prototype coefficients of order n
+CFFT	Fast Fourier transform of complex data (capital form)
+Ceil	Round up to the next multiple of a step
+cheby1	Analog Chebyshev type I lowpass prototype coefficients of order n and ripple e
+Cholesky	Cholesky factor of a symmetric positive definite matrix
+dht	Hartley transform of a vector (1/N scaling)
+FFT	Fast Fourier transform of a vector
+Floor	Round down to the previous multiple of a step
+FresnelC	C(x) = integral from 0 to x of cos(pi*t^2/2) dt
+FresnelS	S(x) = integral from 0 to x of sin(pi*t^2/2) dt
+H1	Hankel function of the first kind
+H2	H2(n, z) = J_n(z) - i*Y_n(z): outgoing-wave Bessel combination
+Her	Hermite orthogonal polynomial
+hilbert	Hilbert transform of a real vector (imaginary part of the analytic signal)
+I0	Modified Bessel function I of order 0
+I1	Modified Bessel function I of order 1
+ICFFT	Inverse complex fast Fourier transform (capital form)
+idht	Inverse Hartley transform of a vector (unscaled)
+IFFT	Inverse fast Fourier transform
+iirhigh	Digital highpass IIR filter from prototype coefficients and a cutoff frequency
+iirlow	Digital lowpass IIR filter from prototype coefficients and a cutoff frequency
+Im	Imaginary component b of z = a + i*b, returned as a real number
+In	Modified Bessel function I of integer order n
+J0	Bessel function of the first kind, order 0
+J1	Bessel function of the first kind, order 1
+Jac	Jacobi orthogonal polynomial
+Jn	Bessel function of the first kind, integer order n
+K0	Modified Bessel function K of order 0
+K1	Modified Bessel function K of order 1
+Kn	Modified Bessel function K of integer order n
+LU	LU decomposition with pivoting
+Lag	Laguerre orthogonal polynomial
+LambertW	Lambert W function (inverse of x e^x)
+Leg	Legendre orthogonal polynomial
+Psi	Digamma function (log derivative of the gamma function)
+QR	QR decomposition of a matrix
+READCSV	Read a numeric table from a CSV file
+READTEXT	Read the text of a file
+Rank	Rank of each element of a vector
+Re	Real part of a number
+Rkadapt	Adaptive Runge-Kutta solver for an ODE
+Round	Round to the nearest multiple of a step
+Stdev	Square root of the n-1 divisor variance: spread of a sample
+Tcheb	T_n(x): Chebyshev polynomial with T_n(cos t) = cos(n*t)
+Thiele	Continued-fraction interpolation at a point, from Thielecoeff coefficients
+Thielecoeff	Coefficients of the Thiele continued-fraction interpolant through data points
+Trunc	Truncate to a multiple of a step
+Ucheb	U_n(x): Chebyshev polynomial with U_n(cos t) = sin((n+1)*t) / sin(t)
+Var	Variance of the data with the n-1 divisor, for a sample
+WRITECSV	Write a matrix to a CSV file
+WRITETEXT	Write text to a file
+Y0	Bessel function of the second kind, order 0
+Y1	Bessel function of the second kind, order 1
+Yn	Bessel function of the second kind, integer order n
+abs	Absolute value, or magnitude of a complex number or vector
+acos	Angle in radians whose cosine is x, principal value from 0 to pi
+acosh	Inverse hyperbolic cosine
+acot	Angle in radians whose cotangent is x, principal branch
+acoth	Inverse hyperbolic cotangent
+acsc	Inverse cosecant
+acsch	Inverse hyperbolic cosecant
+arg	Argument (phase angle) of a complex number
+asec	Inverse secant
+asech	Inverse hyperbolic secant
+asin	Angle in radians whose sine is x, principal value from -pi/2 to pi/2
+asinh	ln(x + sqrt(x^2 + 1)): the y with sinh(y) = x
+atan	Angle in radians whose tangent is x, principal value from -pi/2 to pi/2
+atanh	Inverse hyperbolic tangent
+augment	Join two matrices side by side
+boxwilson	Box-Wilson central composite design for response surfaces
+ceil	Round up to the next integer
+cfft	Fast Fourier transform of complex data (lower-case form)
+cnorm	Cumulative probability of the standard normal distribution
+cnper	Number of periods for a present value to reach a future value
+cols	Number of columns of a matrix
+combin	Number of combinations of n items taken k at a time
+concat	Join two strings
+cond1	Condition number of a matrix in the 1-norm
+cond2	Condition number of a matrix in the 2-norm
+conde	Condition number of a matrix in the Euclidean norm
+condi	Condition number of a matrix in the infinity norm
+convolve	Discrete convolution of two vectors
+deconvolve	Exact deconvolution: the kernel that turns one vector into another by convolution
+corr	Correlation coefficient of two data vectors
+cos	cos(x) for an angle x in radians: adjacent side over hypotenuse
+cosh	(e^x + e^(-x)) / 2, the hyperbolic cosine of x
+cot	1 / tan(x) for an angle x in radians
+coth	cosh(x) / sinh(x), the reciprocal of tanh(x)
+crate	Interest rate that turns a present value into a future value
+cross	Cross product of two three-element vectors
+csc	1 / sin(x) for an angle x in radians
+csch	Hyperbolic cosecant
+csort	Reorders the columns of a matrix so that the entries of the chosen row ascend
+cspline	Coefficients of a cubic spline through data points
+cumint	Cumulative interest paid over a range of periods
+cumprn	Cumulative principal paid over a range of periods
+cvar	Covariance of two data vectors
+dft	Sum over k of v_k * exp(-2*pi*i*j*k/N) for a vector v, without scaling
+dftr	Real part of the discrete Fourier transform
+diag	Diagonal matrix, or the diagonal of a matrix
+doelabel	Convert coded design levels to actual factor levels
+eff	Effective annual rate from a nominal rate
+eigenvals	Eigenvalues, possibly complex, of a square matrix as a column
+eigenvec	Eigenvector for one eigenvalue of a matrix
+eigenvecs	Eigenvectors of a matrix
+ellipticE	E(k): integral from 0 to pi/2 of sqrt(1 - k^2 sin^2 t) dt
+ellipticF	F(phi, k): integral from 0 to phi of dt / sqrt(1 - k^2 sin^2 t)
+ellipticK	K(k): integral from 0 to pi/2 of dt / sqrt(1 - k^2 sin^2 t)
+erf	2/sqrt(pi) times the integral from 0 to x of exp(-t^2) dt
+erfc	1 - erf(x): the tail mass of the Gaussian integral
+error	Stop the calculation with a user-defined message
+exp	e^x, the exponential of x
+expfit	Exponential curve fit to data
+fft	Fast Fourier transform of a vector (lower-case form)
+format	Text of a number with a given format
+fullfact	Full factorial design matrix for given factor levels
+fv	Future value of a present amount at a rate
+fvadj	Future value under a vector of period rates
+fvc	Future value of a vector of cash flows at a rate
+gcd	Largest positive integer that divides both arguments exactly
+genfit	Fit of a model with user-given basis functions
+geninv	Generalized (pseudo) inverse of a matrix
+genvals	Values lambda solving A*v = lambda*B*v for a matrix pair (A, B)
+genvecs	Generalized eigenvectors of a matrix pair
+gmean	Geometric mean of data
+hhmmss	Time in hours, minutes and seconds
+hist	Histogram counts of data over bins
+histogram	Histogram bin counts and bin centres
+hlookup	Look up a value in the first row of a table
+hls_to_rgb	Convert a hue-lightness-saturation colour to red-green-blue
+hmean	Harmonic mean of data
+hsv_to_rgb	Convert a hue-saturation-value colour to red-green-blue
+ibeta	Regularized incomplete beta function
+icfft	Inverse fast Fourier transform of complex data (lower-case form)
+identity	Identity matrix of a given size
+idft	Inverse of dft: (1/N) times the sum over k of v_k * exp(+2*pi*i*j*k/N)
+idftr	Real part of the inverse discrete Fourier transform
+ifft	Inverse fast Fourier transform (lower-case form)
+im	Imaginary part of a number (lower-case form)
+interp	Interpolate values from a cubic spline
+intercept	Intercept of a straight-line regression
+invertimage	Invert the grey levels of an image matrix
+ipmt	Interest part of a loan payment in one period
+irr	Internal rate of return of a cash-flow vector
+kronecker	Block matrix made by multiplying every element of A by the whole matrix B
+ksmooth	Kernel smoothing of data
+kurt	Excess kurtosis of data
+last	Index of the last element of a vector
+lcm	Smallest positive integer that both arguments divide
+length	Number of elements of a vector
+line	Intercept and slope of a straight-line fit
+linfit	Least-squares straight-line fit to data
+linterp	Linear interpolation of values
+ln	Logarithm to base e of x, defined for x > 0
+ln0	Natural logarithm with its own zero case
+lnΓ	Logarithm of Gamma(x), evaluated without overflow for large x
+lnfit	Logarithmic curve fit to data
+log	Logarithm to a given base (default 10)
+logfit	Logarithmic model fit to data
+logpts	Points spaced logarithmically between two values
+logspace	Vector of values spaced logarithmically
+lookup	Look up the value paired with a key in a table
+lsolve	Solution x of the linear system A*x = b, for a square nonsingular A
+lspline	Coefficients of a linear spline through data points
+match	Position of a value in a vector
+max	Largest value of its arguments
+mean	Arithmetic mean of data
+median	Middle value of the sorted data; mean of the two middle values when n is even
+medsmooth	Median smoothing of data
+min	Smallest value of its arguments
+mirr	Modified IRR: rate equating PV of outflows at the finance rate to FV of inflows
+mod	Remainder after division
+mode	Most frequent value of data
+nom	Nominal annual rate from an effective rate
+norm	Euclidean norm of a vector or matrix
+norm1	Norm of a vector or matrix in 1-norm
+norm2	Norm of a vector or matrix in 2-norm
+norme	Euclidean (Frobenius) norm of a matrix
+normi	Infinity norm of a matrix
+npv	Net present value of cash flows at a rate
+nper	Number of periods of a loan or investment
+num2str	Text of a number
+order	Sort order (indices) of the elements of a vector
+percentile	Value at a given percentile of data
+permut	Number of permutations of n items taken k at a time
+pmt	Periodic payment of a loan or investment
+polyroots	Roots of a polynomial given by its coefficients
+ppmt	Principal part of a loan payment in one period
+predict	Predicted values from a fitted model
+pspline	Coefficients of a parabolic spline through data points
+pv	Present value of a future amount at a rate
+pwrfit	Power-law curve fit to data
+rate	Interest rate per period of a loan or investment
+rgb_to_hls	Convert a red-green-blue colour to hue-lightness-saturation
+rgb_to_hsv	Convert a red-green-blue colour to hue-saturation-value
+rkfixed	Fixed-step Runge-Kutta solver for an ODE
+rows	Number of rows of a matrix
+rref	Reduced row echelon form of a matrix
+rsort	Sort the rows of a matrix by one column
+re	Real part of a number (lower-case form)
+reverse	Reverse the order of the elements of a vector
+rnd	Random number from a uniform distribution
+root	Root of a function near a guess, or of a function on an interval
+round	Round to a number of decimal places
+sec	1 / cos(x) for an angle x in radians
+sech	Hyperbolic secant
+sign	Sign of a number (-1, 0 or 1)
+sin	sin(x) for an angle x in radians: opposite side over hypotenuse
+sinc	Normalised sinc function sin(pi x) / (pi x)
+sinfit	Sine curve fit to data
+sinh	(e^x - e^(-x)) / 2, the hyperbolic sine of x
+skew	Skewness of data
+slope	Slope of a straight-line regression
+sort	Sort the elements of a vector in ascending order
+sqrt	Nonnegative y with y*y = x, for x >= 0
+stack	Stack matrices vertically or join vectors
+stderr	Standard error of the mean of data
+str2num	Number from its text
+str2vec	Vector of the characters of a string
+strlen	Number of characters in a string
+substr	Part of a string
+svd	Singular value decomposition A = U*S*V^T (rows >= columns); returns U, S and V
+svds	Singular values of a matrix
+tan	sin(x) / cos(x) for an angle x in radians
+tanh	(e^x - e^(-x)) / (e^x + e^(-x)), maps x into the interval (-1, 1)
+time	Time value from its parts
+tr	Sum of the diagonal elements of a square matrix
+trunc	Truncate to an integer
+vec	Vector of values from a range variable
+vec2str	Text of a vector
+vhlookup	Look up a value in a table by row or column
+vlookup	Look up a value in the first column of a table
+search	Position of one string inside another
+scale	Scale the grey levels of an image into a range
+Γ	Gamma(x) = integral from 0 to infinity of t^(x-1) * e^(-t) dt
+Φ	Unit step: 0 for x below zero, 1 for x above zero
+δ	delta(i, j) = 1 when i equals j, otherwise 0
+clip	Limit each value to a lower and an upper bound
+det	Determinant of a square matrix, computed from its LU factorisation
+floor	Round down to an integer
+lgsfit	Logistic curve fit to data
+rank	Rank of a matrix
+stdev	Square root of the variance with divisor n, for a whole population
+submatrix	Part of a matrix from a range of rows and columns
+var	Variance of the data with divisor n (sum of squared deviations over n)
+Stiffr	Stiff ODE solver (Rosenbrock method)
+Bulstoer	Bulirsch-Stoer solver for a non-stiff ODE
+Adams	Adams-Bashforth-Moulton solver for an ODE
+BDF	Backward differentiation formula solver for a stiff ODE
+Radau	Radau IIA solver for a stiff ODE
+AdamsBDF	Adams solver that uses BDF for stiff problems
+sbval	Initial values of a two-point boundary value problem by shooting
+bvalfit	Initial values of a boundary value problem matched at an interior point
+medfit	Median-median straight-line fit to data
+movavg	Moving average of data
+expsmooth	Exponential smoothing of data
+supsmooth	Adaptive super smoothing of data
+maximize	Local maximum of a function of one or more variables
+minimize	Local minimum of a function of one or more variables
+atan2	Polar angle of the point (x, y), in (-pi, pi]; atan2(x, y) is arg(x + yi)
+Si	Sine integral: the integral from 0 to x of sin(t)/t
+Ci	Cosine integral for x > 0: gamma + ln x + the integral of (cos t - 1)/t
+Shi	Hyperbolic sine integral: the integral from 0 to x of sinh(t)/t
+Chi	Hyperbolic cosine integral, even in x
+Ei	Exponential integral (principal value), real argument
+li	Logarithmic integral, li(x) = Ei(ln x) for x > 0 and x not 1
+Li	Offset logarithmic integral: the integral from 2 to x of 1/ln(t)
+horzflip	Matrix flipped horizontally (columns in reverse order)
+vertflip	Matrix flipped vertically (rows in reverse order)
+blackman	Blackman window of length n
+hamming	Hamming window of length n
+hanning	Hann (raised cosine) window of length n
+nuttall	Nuttall four-term window of length n
+triangular	Triangular window of length n
+taprect	Tapered rectangular window of length n
+kaiser	Kaiser window of length n with shape parameter b
+gaussian	Gaussian window of length n with width parameter a
+costaper	Cosine-tapered rectangular window of length n
+cheby	Dolph-Chebyshev window of odd length n with sidelobe level r in dB
+lowpass	FIR lowpass coefficients from a windowed ideal response
+highpass	FIR highpass coefficients from a windowed ideal response
+bandpass	FIR bandpass coefficients from a windowed ideal response
+bandstop	FIR bandstop coefficients from a windowed ideal response
+response	Response of a FIR or IIR filter cascade to a signal, direct form
+fftfilt	FIR filter response of a signal, one output per input sample
+filtfilt	Zero-phase filter response from a forward and a backward pass
+gain	Complex gain of a filter at a fraction of the sampling frequency
+detrend	Residuals of a signal after removing its straight-line trend
+quantize	Snaps each element to one of n equally spaced levels
+phase	Phase angle of each element in radians
+phasecor	Phase vector made continuous by adding multiples of 2 pi
+conj	Complex conjugate, element by element
+nthRoot	nth root of a dimensionless number (real root for odd n)
+IsNaN	Tests for NaN, element by element (always 0 here, NaN is not a value)
+polyint	Polynomial interpolation at a point, with an error estimate
+polycoeff	Coefficients of the polynomial through the given (x, y) points
+polyiter	Iterated polynomial interpolation with a tolerance
+localmax	Local maxima of a two- or three-dimensional data set
+localmin	Local minima of a two- or three-dimensional data set
+VSmooth	Repeated median smoothing until nothing changes
+contingtbl	Chi-squared test and association measures of a contingency table
+DMS	Degrees, minutes and seconds to radians
+FIF	Feet, inches and fractions to a length in metres
+IsArray	1 if the argument is a vector or matrix, otherwise 0
+IsScalar	1 if the argument is a real or complex scalar, otherwise 0
+IsString	1 if the argument is a string, otherwise 0
+csgn	Half-plane sign of a complex number: 0 at zero, 1 for Re>0 or Re=0 with Im>0, else -1
+signum	z/|z| for z not zero, and x (default 1) for z = 0; vectorised
+fractfact	Fractional factorial design from a generator string such as "A, B, C=AB" (not n, r)
+fractruns	Number of runs of a fractional factorial from its generator string
+fractresol	Resolution of a fractional factorial from its generator string (shortest defining word)
+foldover	Two-block foldover of a coded design: mirror runs with all or the named levels reversed
+READPRN	Read a space-separated numeric PRN file into a matrix
+WRITEPRN	Write a matrix as space-separated numbers to a PRN file
+READFILE	Read a delimited or fixed-width numeric text file (Excel not built)
+WRITEFILE	Write a matrix as a tab-delimited text file (Excel not built)
+READWAV	Read PCM WAV samples (8 or 16 bit) into a matrix, one column per channel
+WRITEWAV	Write a matrix as PCM WAV samples at a given rate and bit resolution
+GETWAVINFO	Channels, sample rate, bits per sample and bytes per second of a WAV file
+READBMP	Read an 8-bit grey BMP file into a matrix of grey levels
+WRITEBMP	Write a grey matrix (0 to 255) as an 8-bit BMP file
+sobel	Edge magnitude from the Sobel gradient kernels
+prewitt	Edge magnitude from the Prewitt gradient kernels
+roberts	Edge magnitude from the Roberts diagonal kernels
+freichen	Edge magnitude from the Frei-Chen gradient kernels
+kirsch	Largest Kirsch compass response of an image
+robinson3	Largest 3-level Robinson compass response of an image
+robinson5	Largest 5-level Robinson compass response of an image
+compgrad	Largest compass-gradient response of an image
+rowgrad	Difference between each image row and the row above
+colgrad	Difference between each image column and the column before
+centsmooth	Smooth an image with a centre-weighted 3 x 3 average
+getnoise	Median-filtered image minus the image
+quantfilt	Quantile filter of an image over a user kernel
+wiener2d	Adaptive Wiener noise reduction of an image
+threshold	Zero the elements below a threshold (or above minus the threshold)
+binarize	Two-level image from a threshold, a band, or an automatic threshold
+equalize	Spreads the grey levels of an image so its histogram is flatter
+levelmap	Map image levels through a lookup vector
+imhist	Histogram of an image over n bins of 0 to 255
+imhist2	Histogram of an image over n bins spanning its own range
+hist2d	Joint two-image histogram with n by n bins
+translate	Shift a matrix by rows and columns, padding the gap
+zoom	Resize a matrix by separate row and column factors
+rotate	Rotate an image counterclockwise by an angle in degrees
+putregion	Copy a block into an image at a position
+extract	One colour plane of a packed colour matrix, or all three
+replace	Replace one colour plane of a packed colour matrix
+subcolor	Submatrix of a packed colour matrix
+erode	Binary erosion of an image with a structuring element
+dilate	Binary dilation of an image with a structuring element
+open	Morphological opening of a binary image: erosion followed by dilation
+close	Binary morphological closing
+thin	Thinning of a binary image to centre lines
+skeleton	Morphological skeleton of a binary image
+cnvxhull	Convex hull of the pixels with a given value, as a binary image
+distform	Euclidean distance from each pixel to the nearest pixel of a value
+dct	Two-dimensional discrete cosine transform
+idct	Inverse two-dimensional discrete cosine transform
+center	Fourier transform with the zero frequency in the centre
+matconv	Filter an image by a frequency-domain mask
+gray_erode	Grayscale erosion with a structuring element
+gray_dilate	Grayscale dilation with a structuring element
+gray_open	Grayscale opening (erosion then dilation)
+gray_close	Grayscale closing (dilation then erosion)
+polyfit	Multivariate polynomial regression that returns the fitted function
+effects	Effects of factor levels, blocks and two-factor interactions in a two-level design
+quickscreen	Low and high averages and the effect of each factor in a coded two-level design
+IsFunction	Whether an argument is a function (1) or not (0)
+funmap	Apply a function to every element of a matrix
+funconv	Filter an image in the frequency domain by a mask made from a function
+funcdeconv	Undo a frequency-domain filter given by a function
+fhyper	Gauss hypergeometric function 2F1(a, b; c; x) by its series, for -1 < x < 1
+mhyper	Confluent hypergeometric function 1F1(a; b; x) = M(a, b, x) by its series
+angle	Polar angle of the point (x, y) in [0, 2 pi)
+xy2pol	Rectangular to polar coordinates (r, theta)
+pol2xy	Polar to rectangular coordinates
+xyz2sph	Rectangular to spherical coordinates (r, theta, phi)
+sph2xyz	Spherical to rectangular coordinates
+xyz2cyl	Rectangular to cylindrical coordinates
+cyl2xyz	Cylindrical to rectangular coordinates
+fact2	Double factorial n!! for an integer n >= -1
+beta	Beta function for positive real arguments
+Zeta	Riemann zeta function, real argument, not 1
+dilog	Dilogarithm, real for x >= 0
+polylog	Polylogarithm, integer order, real argument
+SIUnitsOf	One carrying the SI dimension of x
+Stiffb	Stiff ODE solver (same solutions as Stiffr)
+READRGB	Read a 24-bit colour BMP file as a packed RGB matrix
+WRITERGB	Write a packed RGB matrix (0 to 255) as a 24-bit BMP file
+fractalias	Aliases of each factor or interaction in a fractional factorial, from its generators
+Grubbs	Outlier test: points whose |v - mean|/stdev exceeds the Grubbs critical value for level a
+GrubbsClassic	Outlier test: the most likely outlier, its statistic and distance to the limit
+ThreeSigma	Outliers beyond three standard deviations, or the most extreme point when there are none
+trim	Remove the rows listed in an index vector
+relax	Relaxation solver for Poisson's equation on a square grid
+multigrid	Multigrid solver for Poisson's equation with zero edges
+numol	Method-of-lines solver for a one-dimensional PDE system
+statespace	Solver for a linear state-space ODE system x' = A x + B u

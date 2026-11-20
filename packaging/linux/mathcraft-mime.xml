@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Installed as /usr/share/mime/packages/mathcraft.xml. An .mcdx file is a ZIP package. -->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-mathcraft-mcdx">
+    <comment>Mathcad Prime worksheet package</comment>
+    <sub-class-of type="application/zip"/>
+    <glob pattern="*.mcdx"/>
+  </mime-type>
+</mime-info>

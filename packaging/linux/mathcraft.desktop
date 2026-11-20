@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Mathcraft
+GenericName=Worksheet calculator
+Comment=Open, calculate and edit Mathcad Prime worksheets (.mcdx)
+Exec=mathcraft-app %F
+Icon=mathcraft
+Terminal=false
+Categories=Education;Science;Math;
+Keywords=mathcad;mcdx;worksheet;calculation;units;
+MimeType=application/x-mathcraft-mcdx;
+StartupNotify=true
+StartupWMClass=Mathcraft

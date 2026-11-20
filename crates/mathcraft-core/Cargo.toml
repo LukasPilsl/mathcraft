@@ -1,0 +1,25 @@
+[package]
+name = "mathcraft-core"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+keywords.workspace = true
+description = "Calculation engine for Mathcraft: expressions, units, values, symbolic and numeric solvers"
+
+[lints]
+workspace = true
+
+[dependencies]
+num-bigint = "0.5.1"
+num-complex = "0.4.6"
+num-rational = "0.4.2"
+num-traits = "0.2.19"
+thiserror = "2.0.21"
+
+# Unix open flags for the file functions (O_NOFOLLOW, O_NONBLOCK, ELOOP). Already in Cargo.lock.
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

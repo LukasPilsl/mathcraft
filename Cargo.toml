@@ -1,0 +1,43 @@
+[workspace]
+members = ["crates/mathcraft-core", "crates/mathcraft-import", "crates/mathcraft-doc","crates/mathcraft-app", "crates/mathcraft-cli", "crates/mathcraft-mcp"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+description = "Open-source worksheet engine and app that reads, recalculates and writes Mathcad Prime .mcdx worksheets"
+# Not published while the repository is private (see documentation/RELEASE_CHECKLIST.md).
+publish = false
+# Minimum supported Rust version: the highest rust-version declared by the locked dependency graph
+# (ordered-float 5.5.1). Not yet verified by building on that toolchain; see packaging/README.md.
+rust-version = "1.90"
+# Placeholder until the public repository exists. tools/release_check.py warns while it is unset.
+repository = "https://github.com/lukaspilsl/mathcraft"
+keywords = ["mathcad", "worksheet", "calculation", "units", "mcdx"]
+
+[workspace.lints.rust]
+# No unsafe code anywhere in the workspace; a new `unsafe` block fails the build.
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+
+# Keep build output small: many parallel worktrees each build their own target/.
+# Line tables keep useful backtraces; full debug info is rarely needed here.
+[profile.dev]
+debug = "line-tables-only"
+
+[profile.test]
+debug = "line-tables-only"
+
+# Release builds (see documentation/RELEASE_CHECKLIST.md, "Release build"). Panics unwind, so the
+# app can catch a panic in an evaluation thread and report it; do not switch to "abort" without
+# checking that path. Symbols are kept for crash reports; only debug info is stripped.
+[profile.release]
+lto = "thin"
+codegen-units = 1
+opt-level = 3
+panic = "unwind"
+strip = "debuginfo"

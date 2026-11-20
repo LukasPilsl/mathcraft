@@ -1,0 +1,18 @@
+[package]
+name = "mathcraft-doc"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+keywords.workspace = true
+description = "GUI-free worksheet document API: regions with stable ids, undoable edits, calculation and transcripts"
+
+[lints]
+workspace = true
+
+[dependencies]
+mathcraft-core = { version = "0.1.0", path = "../mathcraft-core" }
+mathcraft-import = { version = "0.1.0", path = "../mathcraft-import" }
