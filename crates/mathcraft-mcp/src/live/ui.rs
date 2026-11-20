@@ -55,6 +55,8 @@ impl LiveShared {
         self.connections.fetch_add(1, Ordering::Relaxed);
     }
 
+    // `fetch_update` is renamed `try_update` in newer Rust; that name is not in the MSRV (1.90).
+    #[allow(deprecated)]
     pub fn connection_closed(&self) {
         let _ = self
             .connections

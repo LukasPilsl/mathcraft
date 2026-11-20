@@ -44,6 +44,8 @@ impl PixelBudget {
 
     /// Spends `pixels` from the budget. False, and nothing spent, when that would exceed
     /// [`DOCUMENT_PIXEL_BUDGET`].
+    // `fetch_update` is renamed `try_update` in newer Rust; that name is not in the MSRV (1.90).
+    #[allow(deprecated)]
     pub fn reserve(&self, pixels: u64) -> bool {
         self.0
             .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |used| {
