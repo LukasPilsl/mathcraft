@@ -20,7 +20,7 @@
 //! * `--tab` is a ribbon tab: Math, Insert, Functions, Matrices, Calculation, Plots, Format, View,
 //!   Help (any case).
 //! * `--dialog` is one of: insert-function, insert-unit, symbols, matrix, about, shortcuts,
-//!   result-format, page-setup, worksheet-options, file-access.
+//!   result-format, page-setup, worksheet-options, file-access, startup-notice.
 //! * `--app-menu`, `--app-menu-sub new|open|save-as|print` show the application menu;
 //!   `--options-window` the application Options window; `--units-dialog` the Einheitensystem
 //!   (units) window; `--resource <button id>` the window of a Resources button (ids in
@@ -92,6 +92,7 @@ fn window(name: &str) -> Option<Staged> {
         "page-setup" => Staged::PageSetup,
         "worksheet-options" => Staged::WorksheetOptions,
         "file-access" => Staged::FileAccess,
+        "startup-notice" => Staged::StartupNotice,
         _ => return None,
     })
 }

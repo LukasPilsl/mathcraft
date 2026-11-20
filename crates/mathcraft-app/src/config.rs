@@ -19,6 +19,9 @@ pub struct Config {
     pub language: Option<Lang>,
     /// The AI endpoint switch; `None` is the default (on).
     pub live: Option<bool>,
+    /// The start-up notice: `None` and `Some(true)` show it on every start, `Some(false)` is the
+    /// "Don't show again" choice.
+    pub startup_notice: Option<bool>,
 }
 
 /// Reads `key=value` lines. Unknown keys, blank lines, comments (`#`) and bad values are
@@ -41,6 +44,13 @@ pub fn parse(text: &str) -> Config {
                         _ => None,
                     };
                 }
+                "startup_notice" => {
+                    config.startup_notice = match value.trim() {
+                        "on" => Some(true),
+                        "off" => Some(false),
+                        _ => None,
+                    };
+                }
                 _ => {}
             }
         }
@@ -57,6 +67,12 @@ pub fn render(config: &Config) -> String {
     }
     if let Some(on) = config.live {
         text.push_str(&format!("ai_endpoint={}\n", if on { "on" } else { "off" }));
+    }
+    if let Some(on) = config.startup_notice {
+        text.push_str(&format!(
+            "startup_notice={}\n",
+            if on { "on" } else { "off" }
+        ));
     }
     text
 }
@@ -149,6 +165,7 @@ mod tests {
         let config = Config {
             language: Some(Lang::German),
             live: Some(false),
+            startup_notice: Some(false),
         };
         save_to(&dir, &config).expect("saves");
         assert_eq!(load_from(&dir), config);
@@ -157,6 +174,7 @@ mod tests {
             &Config {
                 language: Some(Lang::English),
                 live: None,
+                startup_notice: None,
             },
         )
         .expect("saves again");
@@ -185,6 +203,35 @@ mod tests {
         assert_eq!(parse(text).language, Some(Lang::German));
         assert_eq!(parse("language=xx").language, None);
         assert_eq!(parse("\u{0}garbage").language, None);
+    }
+
+    #[test]
+    fn the_start_up_notice_is_shown_unless_switched_off() {
+        assert_eq!(parse("language=de\n").startup_notice, None);
+        assert_eq!(parse("startup_notice=off\n").startup_notice, Some(false));
+        assert_eq!(parse("startup_notice=on\n").startup_notice, Some(true));
+        assert_eq!(parse("startup_notice=maybe\n").startup_notice, None);
+        let off = Config {
+            startup_notice: Some(false),
+            ..Config::default()
+        };
+        assert_eq!(parse(&render(&off)), off);
+    }
+
+    #[test]
+    fn a_file_from_before_the_notice_loads_with_the_notice_shown() {
+        let dir = temp_dir("old-file");
+        std::fs::create_dir_all(&dir).expect("creates the folder");
+        std::fs::write(
+            dir.join(FILE_NAME),
+            "# Mathcraft settings\nlanguage=de\nai_endpoint=off\n",
+        )
+        .expect("writes the old file");
+        let loaded = load_from(&dir);
+        assert_eq!(loaded.language, Some(Lang::German));
+        assert_eq!(loaded.live, Some(false));
+        assert_eq!(loaded.startup_notice, None);
+        let _ = std::fs::remove_dir_all(&dir);
     }
 
     #[test]

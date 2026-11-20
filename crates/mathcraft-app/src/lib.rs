@@ -61,6 +61,7 @@ pub mod render;
 pub mod ribbon;
 pub mod ribbon_icons;
 pub mod settings_window;
+pub mod startup_notice;
 pub mod statusbar;
 pub mod table;
 pub mod temp_file;

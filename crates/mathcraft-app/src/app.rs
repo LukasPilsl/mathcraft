@@ -47,6 +47,7 @@ use crate::export;
 use crate::file_picker;
 use crate::i18n::{self, term, tr, trf, Lang};
 use crate::menus::{self, MenuAction, WsAction};
+use crate::startup_notice::StartupNotice;
 use crate::statusbar::{self, SearchAction, SearchState};
 use mathcraft_core::eval::builtins::fileio::FileOptions;
 use mathcraft_doc::search::step_index;
@@ -200,12 +201,17 @@ pub struct App {
     /// Regions the AI changed during the last pump, handed to the runtime after it.
     pending_flashes: Vec<crate::live::Flash>,
     stage_live: bool,
+    /// The start-up notice. Only [`App::new`] (the window) opens it; the headless harness and
+    /// the tests come through [`App::with_context`], which leaves it closed.
+    startup_notice: StartupNotice,
 }
 
 impl App {
     /// Creates the app and opens `initial` when one is given.
     pub fn new(cc: &eframe::CreationContext<'_>, initial: Option<PathBuf>) -> Self {
-        Self::with_context(&cc.egui_ctx, initial)
+        let mut app = Self::with_context(&cc.egui_ctx, initial);
+        app.startup_notice = StartupNotice::for_config(&config::load());
+        app
     }
 
     /// Creates the app on `ctx` (fonts and options are set on it) and opens `initial` when one is
@@ -261,6 +267,7 @@ impl App {
             live_enabled: false,
             pending_flashes: Vec::new(),
             stage_live: false,
+            startup_notice: StartupNotice::default(),
         };
         match initial {
             Some(path) => app.open(ctx, &path),
@@ -279,6 +286,7 @@ impl App {
     pub fn stage(&mut self, staged: Staged) {
         match staged {
             Staged::Live => self.stage_live = true,
+            Staged::StartupNotice => self.startup_notice.open(),
             Staged::Tab(index) => self.tab = index,
             Staged::Dialog(dialog) => self.dialogs.open(dialog),
             Staged::ResultFormat => self.open_result_format(),
@@ -1621,10 +1629,9 @@ impl App {
         i18n::set_language(lang);
         // Results are text built with the separators of the language: evaluate again to show them.
         self.recalc_requested = true;
-        if let Err(err) = config::save(&config::Config {
-            language: Some(lang),
-            live: config::load().live,
-        }) {
+        let mut saved = config::load();
+        saved.language = Some(lang);
+        if let Err(err) = config::save(&saved) {
             self.notice = Some(trf("app.config_error", &[&err.to_string()]));
         }
     }
@@ -2358,6 +2365,8 @@ fn edit_key(key: Key) -> Option<EditKey> {
 pub enum Staged {
     /// The AI endpoint on, one client connected, the first region flashing (screenshot harness).
     Live,
+    /// The start-up notice (see `startup_notice.rs`), open whatever the settings say.
+    StartupNotice,
     /// A ribbon tab, by index into `ribbon::TABS`.
     Tab(usize),
     Dialog(Dialog),
@@ -2410,6 +2419,7 @@ impl App {
             || self.loader.busy()
             || self.confirm.is_some()
             || self.dialogs.is_open()
+            || self.startup_notice.is_open()
     }
 
     /// See `eframe::App::raw_input_hook`. Public for the headless harness, which has no eframe.
@@ -2571,6 +2581,17 @@ impl App {
         self.file_access_window(ctx);
         self.plot_dialog_window(ctx);
         self.confirm_dialog(ctx);
+        if self.startup_notice.show(ctx) {
+            // The "Don't show again" box counts only now that the window is closed.
+            let mut saved = config::load();
+            let before = saved;
+            self.startup_notice.record(&mut saved);
+            if saved != before {
+                if let Err(err) = config::save(&saved) {
+                    self.notice = Some(trf("app.config_error", &[&err.to_string()]));
+                }
+            }
+        }
         if let Some(mut tab) = self.options_tab {
             let before = self.live_enabled;
             let mut live_on = before;
